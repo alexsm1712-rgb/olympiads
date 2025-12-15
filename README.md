@@ -15,7 +15,7 @@
 
 1. Создать базу данных PostgreSQL:
 
-```sql
+sql
 CREATE DATABASE olympdb;
 Создать пользователя (если ещё нет):
 
