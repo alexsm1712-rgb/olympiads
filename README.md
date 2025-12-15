@@ -78,7 +78,10 @@ Project language level: 17 – Sealed types, pattern matching, records
 Избранное: http://localhost:8081/olympiads/favorites
 
 Но сначала надо пройти авторизацию:
-РОЛИ ADMIN: логин: admin, пароль: 1
+
+РОЛИ 
+
+     ADMIN: логин: admin, пароль: 1
 
      ORGANIZER: логин: organizer, пароль: 1
      
