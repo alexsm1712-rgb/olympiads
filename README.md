@@ -25,6 +25,8 @@ CREATE USER postgres WITH PASSWORD '1';
 
 GRANT ALL PRIVILEGES ON DATABASE olympdb TO postgres;
 
+
+
 В src/main/resources/application.properties проверить настройки подключения:
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/olympdb
