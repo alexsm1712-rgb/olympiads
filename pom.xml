@@ -18,11 +18,11 @@
     <spring.boot.version>3.3.4</spring.boot.version>
   </properties>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>${spring.boot.version}</version>
-  </parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.4</version>
+    </parent>
 
   <dependencies>
     <dependency>
@@ -71,6 +71,7 @@
       <dependency>
           <groupId>org.thymeleaf.extras</groupId>
           <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+          <version>3.1.1.RELEASE</version>
       </dependency>
 
   </dependencies>

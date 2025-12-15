@@ -21,5 +21,4 @@
 Thumbs.db
 
 # Файлы с локальными настройками (если есть)
-application.properties
 .env
