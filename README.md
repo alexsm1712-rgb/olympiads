@@ -11,11 +11,12 @@
 
 ---
 
-## 2. Настройка базы данных
+## Настройка базы данных
 
-1. Создать базу данных PostgreSQL:
+Создать базу данных PostgreSQL:
 
 sql
+
 CREATE DATABASE olympdb;
 
 Создать пользователя (если ещё нет):
@@ -42,7 +43,7 @@ spring.thymeleaf.encoding=UTF-8
 
 При необходимости замени username и password на свои."
 
-2. Запуск проекта через IntelliJ IDEA
+## Запуск проекта через IntelliJ IDEA
 
 Открой IntelliJ IDEA.
 
@@ -79,7 +80,7 @@ Project language level: 17 – Sealed types, pattern matching, records
      
      USER: логин user, пароль: 1
 
-3. Функционал
+## Функционал
 
 Администратор:
 
@@ -101,4 +102,4 @@ Project language level: 17 – Sealed types, pattern matching, records
 
 Добавление и удаление олимпиад из избранного
 
-Автор: Алексей Мушенков
+## Автор: Алексей Мушенков
