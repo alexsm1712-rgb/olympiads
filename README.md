@@ -11,50 +11,71 @@
 
 ---
 
-## Запуск локально
+## 2. Настройка базы данных
 
-1. Клонируем репозиторий:
+1. Создать базу данных PostgreSQL:
 
-```bash
-git clone https://github.com/alexsm1712-rgb/olympiads.git
-cd olympiads
-Настроить базу данных PostgreSQL:
+```sql
+CREATE DATABASE olympdb;
+Создать пользователя (если ещё нет):
 
-Создать базу olympiadsdb
+CREATE USER postgres WITH PASSWORD '1';
+GRANT ALL PRIVILEGES ON DATABASE olympdb TO postgres;
+В src/main/resources/application.properties проверить настройки подключения:
 
-Настроить пользователя и пароль
-
-В src/main/resources/application.properties указать:
-spring.datasource.url=jdbc:postgresql://localhost:5432/olympiadsdb
-spring.datasource.username=your_db_user
-spring.datasource.password=your_db_password
+spring.datasource.url=jdbc:postgresql://localhost:5432/olympdb
+spring.datasource.username=postgres
+spring.datasource.password=1
 spring.jpa.hibernate.ddl-auto=update
-Собрать и запустить проект:
-mvn clean install
-mvn spring-boot:run
-Перейти в браузере по адресу:
-http://localhost:8081/home
-Роли пользователей
-ADMIN – полный доступ: добавление, редактирование, удаление, просмотр статистики.
+spring.jpa.show-sql=true
+server.port=8081
+spring.thymeleaf.encoding=UTF-8
+При необходимости замени username и password на свои.
 
-ORGANIZER – может создавать олимпиады, редактировать/удалять свои, смотреть статистику только по своим олимпиадам.
+2. Запуск проекта через IntelliJ IDEA
+Открой IntelliJ IDEA.
 
-USER – может просматривать олимпиады и добавлять их в избранное.
+Выбери File → Open и открой корень проекта (где находится pom.xml).
 
-GitHub и деплой
-Для деплоя на облако (Heroku, Railway, Render) подключите этот репозиторий и настройте:
+Подождите, пока Maven загрузит все зависимости.
 
-Java 17
+Найди класс с аннотацией @SpringBootApplication (обычно Main.java).
 
-Maven build
+Кликни правой кнопкой на классе → Run 'Main'.
 
-PostgreSQL (облачная)
+После запуска приложение будет доступно по адресу:
 
-Пример для Heroku:
+Главная страница: http://localhost:8081/home
 
-heroku login
-heroku create olympiads-app
-git push heroku main
-Контакты
+Все олимпиады: http://localhost:8081/olympiads
+
+Избранное: http://localhost:8081/olympiads/favorites
+
+Но сначала надо пройти авторизацию:
+РОЛИ ADMIN: логин: admin, пароль: 1
+     ORGANIZER: логин: organizer, пароль: 1
+     USER: логин user, пароль: 1
+
+3. Функционал
+
+Администратор:
+
+Полный доступ ко всем олимпиадам
+
+Добавление, редактирование, удаление олимпиад
+
+Просмотр статистики добавления олимпиад пользователями
+
+Организатор:
+
+Управление только своими олимпиадами
+
+Просмотр статистики только по своим олимпиадам
+
+Пользователь:
+
+Просмотр списка олимпиад
+
+Добавление и удаление олимпиад из избранного
+
 Автор: Алексей Мушенков
-GitHub: alexsm1712-rgb
