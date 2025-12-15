@@ -14,8 +14,10 @@
 ## 2. Настройка базы данных
 
 1. Создать базу данных PostgreSQL:
+
 sql
 CREATE DATABASE olympdb;
+
 Создать пользователя (если ещё нет):
 
 CREATE USER postgres WITH PASSWORD '1';
