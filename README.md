@@ -34,6 +34,15 @@ spring.thymeleaf.encoding=UTF-8
 
 2. Запуск проекта через IntelliJ IDEA
 Открой IntelliJ IDEA.
+Проверить JDK проекта
+
+В IntelliJ: File → Project Structure → Project
+
+Project SDK: 17
+
+Project language level: 17 – Sealed types, pattern matching, records
+
+В Run/Debug Configurations тоже проверь, чтобы использовался JDK 17.
 
 Выбери File → Open и открой корень проекта (где находится pom.xml).
 
