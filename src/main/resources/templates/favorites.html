@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Моё избранное</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body class="container mt-5">
+
+<h1>Моё избранное</h1>
+
+<nav class="mb-3">
+    <a href="/olympiads" class="btn btn-primary">Все олимпиады</a>
+    <a href="/olympiads/favorites" class="btn btn-secondary">Моё избранное</a>
+    <div style="margin-bottom: 15px;">
+        <a href="/home">На главную</a> |
+        <a href="/about">Об авторе</a> |
+        <form th:action="@{/logout}" method="post" style="display:inline-block;">
+            <button type="submit" class="btn btn-danger">Выйти</button>
+        </form>
+    </div>
+</nav>
+
+<form method="get" action="/olympiads/favorites" class="mb-3">
+    <input type="text" name="q" th:value="${q}" placeholder="Поиск..." class="form-control">
+    <select name="sort" class="form-select mt-2">
+        <option value="">--Сортировать--</option>
+        <option value="title">Название</option>
+        <option value="subject">Предмет</option>
+        <option value="level">Уровень</option>
+        <option value="startDate">Дата начала</option>
+        <option value="endDate">Дата окончания</option>
+    </select>
+    <button type="submit" class="btn btn-primary mt-2">Применить</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Предмет</th>
+        <th>Уровень</th>
+        <th>Организатор</th>
+        <th>Начало</th>
+        <th>Окончание</th>
+        <th>Описание</th>
+
+        <!-- Только ADMIN и ORGANIZER -->
+        <th sec:authorize="hasAnyRole('ADMIN','ORGANIZER')">
+            Добавлено пользователями
+        </th>
+
+        <th>Действия</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="o : ${olympiads}">
+        <td th:text="${o.title}"></td>
+        <td th:text="${o.subject}"></td>
+        <td th:text="${o.level}"></td>
+        <td th:text="${o.organizer}"></td>
+        <td th:text="${o.startDate}"></td>
+        <td th:text="${o.endDate}"></td>
+        <td th:text="${o.description}"></td>
+
+        <!-- СТАТИСТИКА -->
+        <td sec:authorize="hasAnyRole('ADMIN','ORGANIZER')">
+            <!-- ADMIN видит всё -->
+            <span sec:authorize="hasRole('ADMIN')"
+                  th:text="${favoritesCount[o.id]}"></span>
+
+            <!-- ORGANIZER только своё -->
+            <span sec:authorize="hasRole('ORGANIZER')">
+                <span th:if="${o.organizer == currentUser.username}"
+                      th:text="${favoritesCount[o.id]}"></span>
+                <span th:if="${o.organizer != currentUser.username}">
+                    неизвестно
+                </span>
+            </span>
+        </td>
+
+        <!-- ДЕЙСТВИЯ -->
+        <td>
+            <!-- УДАЛИТЬ ИЗ ИЗБРАННОГО (МОГУТ ВСЕ) -->
+            <form th:action="@{'/olympiads/favorite/' + ${o.id}}"
+                  method="post" style="display:inline-block">
+                <button class="btn btn-sm btn-warning">
+                    Удалить из избранного
+                </button>
+            </form>
+
+            <!-- РЕДАКТИРОВАНИЕ -->
+            <a sec:authorize="hasRole('ADMIN')"
+               th:href="@{'/olympiads/edit/' + ${o.id}}"
+               class="btn btn-sm btn-info">Редактировать</a>
+
+            <a sec:authorize="hasRole('ORGANIZER')"
+               th:if="${o.organizer == currentUser.username}"
+               th:href="@{'/olympiads/edit/' + ${o.id}}"
+               class="btn btn-sm btn-info">Редактировать</a>
+
+            <!-- УДАЛЕНИЕ -->
+            <form sec:authorize="hasRole('ADMIN')"
+                  th:action="@{'/olympiads/delete/' + ${o.id}}"
+                  method="post" style="display:inline-block">
+                <button class="btn btn-sm btn-danger">Удалить</button>
+            </form>
+
+            <form sec:authorize="hasRole('ORGANIZER')"
+                  th:if="${o.organizer == currentUser.username}"
+                  th:action="@{'/olympiads/delete/' + ${o.id}}"
+                  method="post" style="display:inline-block">
+                <button class="btn btn-sm btn-danger">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

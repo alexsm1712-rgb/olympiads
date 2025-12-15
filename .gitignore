@@ -1,0 +1,25 @@
+# Сборка Maven
+/target/
+
+# Конфигурации IDE
+/.idea/
+/*.iml
+/.classpath
+/.project
+/.settings/
+
+# Логи
+*.log
+
+# Артефакты
+*.jar
+*.war
+*.class
+
+# MacOS и Windows
+.DS_Store
+Thumbs.db
+
+# Файлы с локальными настройками (если есть)
+application.properties
+.env
