@@ -65,7 +65,7 @@ Project language level: 17 – Sealed types, pattern matching, records
 
 Подождите, пока Maven загрузит все зависимости.
 
-Найди класс с аннотацией @SpringBootApplication (обычно Main.java).
+Найди класс с аннотацией @SpringBootApplication (OlympInfoApplication).
 
 Кликни правой кнопкой на классе → Run 'Main'.
 
