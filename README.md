@@ -14,26 +14,36 @@
 ## 2. Настройка базы данных
 
 1. Создать базу данных PostgreSQL:
-
-"sql
+sql
 CREATE DATABASE olympdb;
 Создать пользователя (если ещё нет):
 
 CREATE USER postgres WITH PASSWORD '1';
+
 GRANT ALL PRIVILEGES ON DATABASE olympdb TO postgres;
+
 В src/main/resources/application.properties проверить настройки подключения:
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/olympdb
+
 spring.datasource.username=postgres
+
 spring.datasource.password=1
+
 spring.jpa.hibernate.ddl-auto=update
+
 spring.jpa.show-sql=true
+
 server.port=8081
+
 spring.thymeleaf.encoding=UTF-8
+
 При необходимости замени username и password на свои."
 
 2. Запуск проекта через IntelliJ IDEA
+
 Открой IntelliJ IDEA.
+
 Проверить JDK проекта
 
 В IntelliJ: File → Project Structure → Project
@@ -62,7 +72,9 @@ Project language level: 17 – Sealed types, pattern matching, records
 
 Но сначала надо пройти авторизацию:
 РОЛИ ADMIN: логин: admin, пароль: 1
+
      ORGANIZER: логин: organizer, пароль: 1
+     
      USER: логин user, пароль: 1
 
 3. Функционал
