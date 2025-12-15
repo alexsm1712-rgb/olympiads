@@ -15,7 +15,7 @@
 
 1. Создать базу данных PostgreSQL:
 
-sql
+"sql
 CREATE DATABASE olympdb;
 Создать пользователя (если ещё нет):
 
@@ -30,7 +30,7 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 server.port=8081
 spring.thymeleaf.encoding=UTF-8
-При необходимости замени username и password на свои.
+При необходимости замени username и password на свои."
 
 2. Запуск проекта через IntelliJ IDEA
 Открой IntelliJ IDEA.
